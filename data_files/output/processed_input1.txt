@@ -1,0 +1,5 @@
+Processed 1: HELLO, THIS IS THE FIRST FILE.
+Processed 2: IT CONTAINS A FEW LINES OF TEXT.
+Processed 3: HAVE A NICE DAY!
+
+Total number of lines: 3

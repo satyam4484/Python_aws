@@ -1,0 +1,5 @@
+Processed 1: THIRD FILE HERE.
+Processed 2: EACH FILE HAS DIFFERENT TEXT.
+Processed 3: ENJOY CODING!
+
+Total number of lines: 3

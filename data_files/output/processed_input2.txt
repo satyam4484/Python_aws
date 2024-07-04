@@ -1,0 +1,5 @@
+Processed 1: THIS IS THE SECOND FILE.
+Processed 2: IT ALSO CONTAINS MULTIPLE LINES.
+Processed 3: PYTHON IS GREAT!
+
+Total number of lines: 3

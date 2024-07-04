@@ -1,0 +1,9 @@
+version: '3'
+services:
+  python_aws:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/python_aws
+    command : python ./main.py
