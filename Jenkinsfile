@@ -41,11 +41,12 @@ pipeline {
                         def image = docker.build("${IMAGE_TAG}")
                         sh 'echo ${image}'
                         echo "Built image: ${image.name}"
-                        sh "docker build -t $ECR_REPOSITORY:${IMAGE_TAG} ."
+                        sh "docker build -t ${ECR_REPOSITORY}:${IMAGE_TAG} ."
 
-                        sh "docker tag $ECR_REPOSITORY:${IMAGE_TAG} ${ECR_URL}/$ECR_REPOSITORY:${IMAGE_TAG}"
+                        sh "docker tag ${ECR_REPOSITORY}:${IMAGE_TAG} ${ECR_URL}/${ECR_REPOSITORY}:${IMAGE_TAG}"
 
-                        sh "docker push ${URL_REGISTRY}/$ECR_REPOSITORY:${IMAGE_TAG}"
+                        sh "docker push ${URL_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+                        
                     }
                 }
             }
