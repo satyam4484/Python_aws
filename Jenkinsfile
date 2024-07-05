@@ -37,7 +37,8 @@ pipeline {
                         sh 'echo "Building image" '
                         sh 'echo ${AWS_ACCESS_KEY_ID}'
 
-                        sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_URL}"
+                        sh "aws ecr get-login-password --region ${AWS_REGION}"
+                        
                         def image = docker.build("${IMAGE_TAG}")
                         sh 'echo ${image}'
                         echo "Built image: ${image.name}"
