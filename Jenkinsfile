@@ -8,6 +8,7 @@ pipeline {
         IMAGE_TAG = "${env.Version}"  // Using the build ID as the image tag
         IMAGE = "${ECR_REPOSITORY}:${IMAGE_TAG}"
         ECR_URL = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+        IMAGE_URL="${ECR_URL}/${IMAGE}"
     }
 
     stages {
@@ -38,11 +39,12 @@ pipeline {
                         sh 'echo ${AWS_ACCESS_KEY_ID}'
 
                         sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_URL}"
-                        image = docker.build "${IMAGE_TAG}" 
 
-                        sh "docker tag ${IMAGE_TAG} ${ECR_URL}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+                        image = docker.build "${IMAGE}" 
 
-                        sh "docker push ${URL_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+                        sh "docker tag ${IMAGE} ${ECR_URL}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+
+                        sh "docker push ${IMAGE_URL}"
                         
                     }
                 }
