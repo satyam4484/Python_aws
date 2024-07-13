@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+    AccountId:
+      Type: String
+      Description: AccountId of the Aws User
+Resources:
+    MyECRRepository:
+      Type: "AWS::ECR::Repository"
+      Properties:
+          RepositoryName: ''
