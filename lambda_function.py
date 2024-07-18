@@ -1,5 +1,9 @@
+from pathlib import Path
 import os
+import boto3
 
+s3cli = boto3.client('s3')
+bucket = os.environ['bucket']
 data_dir = os.path.join(os.path.dirname(__file__), 'data_files')
 
 def read_files(input_dir):
@@ -29,6 +33,7 @@ def write_files(output_dir, manipulated_contents):
     for filename, lines in manipulated_contents.items():
         with open(os.path.join(output_dir, f"processed_{filename}"), 'w') as file:
             file.writelines(lines)
+        s3cli.upload_file(os.path.join(output_dir, f"processed_{filename}"),bucket,os.path.join(output_dir, f"processed_{filename}"))
 
 def process_files(input_dir, output_dir):
     """Main function to process input files and write to output files."""
@@ -40,8 +45,14 @@ def make_directories():
     os.makedirs('/tmp/data_files',exist_ok=True)
     os.makedirs('/tmp/data_files/input',exist_ok=True)
     os.makedirs('/tmp/data_files/output',exist_ok=True)
+
+def lambda_handler(event,context):
+    parent_dir = Path(os.path.dirname(__file__)).parent.parent.parent
+    tmp_dir = os.path.join(parent_dir,'tmp')
     
-if __name__ == "__main__":
+    print(tmp_dir)
     input_directory = os.path.join(data_dir,"input")
-    output_directory = os.path.join(data_dir,"output")
+    output_directory = tmp_dir
     process_files(input_directory, output_directory)
+
+    return {'status':200,'message':'hello from python'}
