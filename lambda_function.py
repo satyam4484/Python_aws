@@ -56,3 +56,6 @@ def lambda_handler(event,context):
     process_files(input_directory, output_directory)
 
     return {'status':200,'message':'hello from python'}
+
+
+# aws iam create-role --role-name lambda-ex --assume-role-policy-document '{"Version": "2012-10-17","Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'

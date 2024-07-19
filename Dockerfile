@@ -7,4 +7,4 @@ COPY . /app
 RUN ls /app
 
 # Final command
-CMD ["python", "./main.py"]
+CMD ["python", "./lambda_function.py"]

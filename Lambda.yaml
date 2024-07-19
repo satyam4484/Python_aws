@@ -1,15 +1,15 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Lambda function created from a ZIP file in S3
+Description: Lambda function created from a container image in ECR
 
 Resources:
   MyLambdaFunction:
     Type: 'AWS::Lambda::Function'
     Properties: 
       FunctionName: MyLambdaFunction
-      Handler: lambda_function.lambda_handler # Update this with your handler
-      Role: arn:aws:iam::your-account-id:role/your-lambda-execution-role  # Update this with your Lambda execution role ARN
+      Role: arn:aws:iam::992382722885:role/lambda-ex
       Code: 
         ImageUri: 992382722885.dkr.ecr.us-east-1.amazonaws.com/python:0.0.2
-      Runtime: python3.12  # Update this with your runtime
       Timeout: 30
       MemorySize: 128
+      PackageType: Image
+# aws cloudformation create-stack --template-body file://lambda.yaml --stack-name my-lambda-function
