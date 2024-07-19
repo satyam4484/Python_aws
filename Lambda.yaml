@@ -12,4 +12,9 @@ Resources:
       Timeout: 30
       MemorySize: 128
       PackageType: Image
+      Environment:
+        Variables:
+          bucket: dm-py
 # aws cloudformation create-stack --template-body file://lambda.yaml --stack-name my-lambda-function
+# aws lambda invoke --function-name MyLambdaFunction response.json
+# aws cloudformation delete-stack --stack-name my-lambda-function
