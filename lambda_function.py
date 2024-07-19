@@ -53,7 +53,7 @@ def lambda_handler(event,context):
     print(tmp_dir)
     input_directory = os.path.join(data_dir,"input")
     output_directory = tmp_dir
-    process_files(input_directory, output_directory)
+    process_files(input_directory, '/tmp/data_files/output')
 
     return {'status':200,'message':'hello from python'}
 
