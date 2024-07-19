@@ -4,9 +4,10 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install  boto3
+RUN pip install --no-cache-dir boto3
 
-RUN ls /app
+# Corrected MKDIR syntax
+RUN mkdir -p /tmp/data_files/output
 
 # Final command
 CMD ["python", "./lambda_function.py"]
