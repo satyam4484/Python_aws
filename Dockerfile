@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
+RUN pip install  boto3
+
 RUN ls /app
 
 # Final command
