@@ -1,10 +1,10 @@
 FROM python:3.12-slim
 
-WORKDIR /python_aws
+WORKDIR /app
 
-COPY . /python_aws
+COPY . /app
 
-RUN ls /python_aws
+RUN ls /app
 
 # Final command
 CMD ["python", "./main.py"]
