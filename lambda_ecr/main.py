@@ -3,7 +3,7 @@ import os
 import boto3
 
 s3cli = boto3.client('s3')
-bucket = os.environ.get('bucket')
+bucket = os.environ['bucket']
 data_dir = os.path.join(os.path.dirname(__file__), 'data_files')
 
 def read_files(input_dir):
@@ -43,7 +43,6 @@ def manipulate_content(file_contents):
 def write_files(output_dir, manipulated_contents):
     """Writes manipulated content to output files."""
     print(f"[DEBUG] Writing files to {output_dir}...")
-    os.makedirs(output_dir, exist_ok=True)
     try:
         for filename, lines in manipulated_contents.items():
             output_file_path = os.path.join(output_dir, f"processed_{filename}")
@@ -73,15 +72,16 @@ def make_directories():
     except Exception as e:
         print(f"[ERROR] Failed to create directories: {e}")
 
-def lambda_handler(event, context):
+def lambda_handler(event,context):
     parent_dir = Path(os.path.dirname(__file__)).parent.parent.parent
-    tmp_dir = os.path.join(parent_dir, 'tmp')
-    
+    tmp_dir = os.path.join(parent_dir,'tmp')
+
+
     print(f"[DEBUG] Environment variable 'bucket': {bucket}")
     print(f"[DEBUG] data_dir: {data_dir}")
     print(f"[DEBUG] parent_dir: {parent_dir}")
     print(f"[DEBUG] tmp_dir: {tmp_dir}")
-    
+
     input_directory = os.path.join(data_dir, "input")
     output_directory = '/tmp/data_files/output'
     

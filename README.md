@@ -101,6 +101,7 @@ pipeline {
         IMAGE_TAG = "${env.Version}"  // Using the build ID as the image tag
         IMAGE = "${ECR_REPOSITORY}:${IMAGE_TAG}"
         ECR_URL = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+        // 992382722885.dkr.ecr.us-east-1.amazonaws.com/python:0.0.2
         IMAGE_URL="${ECR_URL}/${IMAGE}"
     }
 
@@ -156,3 +157,6 @@ pipeline {
         }
     }
 }
+
+
+

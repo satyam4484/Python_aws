@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda function created from a container image in ECR
+
+Resources:
+  MyLambdaLogGroup:
+    Type: 'AWS::Logs::LogGroup'
+    Properties: 
+      LogGroupName: /aws/lambda/MyLambdaFunction
+      RetentionInDays: 14
+
+  MyLambdaFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties: 
+      FunctionName: MyLambdaFunction
+      Role: arn:aws:iam::992382722885:role/lambda-ex
+      Code: 
+        ImageUri: 992382722885.dkr.ecr.us-east-1.amazonaws.com/python:0.0.2
+      Timeout: 30
+      MemorySize: 128
+      PackageType: Image
+      Environment:
+        Variables:
+          bucket: dm-py
