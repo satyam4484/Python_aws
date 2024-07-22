@@ -50,6 +50,16 @@ Delete the CloudFormation stack to remove the Lambda function and associated res
 aws cloudformation delete-stack --stack-name my-lambda-function
 ```
 
+### Increase memory
+```sh
+aws lambda update-function-configuration --function-name MyLambdaFunction --memory-size 512
+```
+
+### Increase empherical storage
+```sh
+aws lambda update-function-configuration --function-name MyLambdaFunction --ephemeral-storage '{"Size":1024}'
+```
+
 ## Summary
 
 By following these steps, you can create, invoke, and delete an AWS Lambda function using CloudFormation and AWS CLI. Ensure you have the necessary IAM roles and permissions configured correctly to manage these resources.
